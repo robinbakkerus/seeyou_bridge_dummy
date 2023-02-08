@@ -1,0 +1,11 @@
+{
+  "showCard": "Hoeveel kaarten tonen",
+  "@showCard": {
+    "description": "question "
+  },
+
+  "language": "Taal",
+  "@language": {
+    "description": "question "
+  }
+}
