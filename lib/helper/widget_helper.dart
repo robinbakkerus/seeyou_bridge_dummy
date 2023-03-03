@@ -1,18 +1,24 @@
 import 'package:seeyou_bridge_dummy/data/play_data.dart';
 import 'package:flutter/material.dart';
+import 'package:seeyou_bridge_dummy/model/card.dart';
 
 import '../event/app_events.dart';
 
 class WidgetHelper {
   /// returns the card image. On the play (main) page the image is Expanded
   static Widget cardImage(String name, ShowPage forPage) {
-    String imageName = "assets/$name.jpg";
+    String imageName = _buildImageName(name);
 
     return forPage == ShowPage.play
         ? Expanded(
             child: _cardImageContainer(imageName, forPage),
           )
         : _cardImageContainer(imageName, forPage);
+  }
+
+  static String _buildImageName(String name) {
+    String imageName = "assets/$name.jpg";
+    return imageName;
   }
 
   ///
@@ -85,15 +91,38 @@ class WidgetHelper {
     );
   }
 
+  static Widget clickableTrumpCard(
+      CardType cartType, void Function() func, bool selected) {
+    String imageName = _buildImageName(cartType.name);
+    return InkWell(
+      onTap: () => func(),
+      child: _trumpCardImageContainer(imageName, ShowPage.select, selected),
+    );
+  }
+
   static Container _cardImageContainer(String imageName, ShowPage forPage) {
     return Container(
         height: _getCardHeight(forPage),
         width: _getCardWidth(forPage),
         margin: const EdgeInsets.all(1.0),
         padding: const EdgeInsets.all(1.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.brown),
-        ),
+        decoration:
+            BoxDecoration(border: Border.all(color: Colors.brown, width: 2)),
+        child: Image(image: AssetImage(imageName)));
+  }
+
+  static Container _trumpCardImageContainer(
+      String imageName, ShowPage forPage, bool selected) {
+    BoxDecoration decoration = selected
+        ? BoxDecoration(border: Border.all(color: Colors.yellow, width: 10))
+        : BoxDecoration(border: Border.all(color: Colors.blue, width: 0));
+
+    return Container(
+        height: _getCardHeight(forPage),
+        width: _getCardHeight(forPage), // same size
+        margin: const EdgeInsets.all(1.0),
+        padding: const EdgeInsets.all(1.0),
+        decoration: decoration,
         child: Image(image: AssetImage(imageName)));
   }
 

@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onShowPage(ShowPageEvent event) {
     setState(() {
+      PlayData.instance.activePage = event.page;
       _stackIndex = event.page.index;
     });
   }
@@ -43,8 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
       _cardsSelectedCount = PlayData.instance.cardsSelectedCount();
     });
 
-    if (_cardsSelectedCount == 13) {
-      await Future.delayed(const Duration(seconds: 1));
+    if (_cardsSelectedCount == 13 &&
+        PlayData.instance.activeTrumpCard != null) {
+      // await Future.delayed(const Duration(seconds: 1));
       PlayData.instance.showTabBar = false;
       AppEvents.fireShowPage(ShowPage.play);
     } else if (_cardsSelectedCount == 0) {
@@ -109,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
     AppEvents.fireCardEvent();
   }
 
+  /// return a stack of floatingaction buttons
   Widget _floatingButtons() {
     String txt = '';
     Color color;

@@ -1,5 +1,5 @@
+import 'package:seeyou_bridge_dummy/data/play_data.dart';
 import 'package:seeyou_bridge_dummy/helper/data_helper.dart';
-import 'package:seeyou_bridge_dummy/model/card.dart';
 import 'package:seeyou_bridge_dummy/widget/card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -17,13 +17,14 @@ class PlayCardPage extends StatefulWidget {
 }
 
 class _PlayCardPageState extends State<PlayCardPage> {
-  final List<String> _cardImages = CardType.values.map((e) => e.name).toList();
+  // final List<String> _cardImages = CardType.values.map((e) => e.name).toList();
   List<List<CardPlayWidget>> _cardsPlayed =
       CardDataHelper.buildOpenDummyCardsList();
 
   _PlayCardPageState() {
     AppEvents.onReset((event) => _onReset(event));
     AppEvents.onCardEvent((event) => _onCardPlayed(event));
+    AppEvents.onShowPage((event) => _onShowPage(event));
   }
 
   @override
@@ -32,6 +33,7 @@ class _PlayCardPageState extends State<PlayCardPage> {
   }
 
   void _onReset(ResetEvent event) {
+    PlayData.instance.activeTrumpCard = null;
     _fillAllCards();
   }
 
@@ -41,7 +43,15 @@ class _PlayCardPageState extends State<PlayCardPage> {
   }
 
   void _onCardPlayed(CardEvent event) {
-    _fillAllCards();
+    if (PlayData.instance.activePage == ShowPage.play) {
+      _fillAllCards();
+    }
+  }
+
+  void _onShowPage(ShowPageEvent event) {
+    if (PlayData.instance.activePage == ShowPage.play) {
+      _fillAllCards();
+    }
   }
 
   void _fillAllCards() {
@@ -59,7 +69,9 @@ class _PlayCardPageState extends State<PlayCardPage> {
   }
 
   Widget _topRow() {
-    var cols = _cardImages
+    List<String> cardImages = CardDataHelper.buildTopRowCardImages();
+
+    var cols = cardImages
         .map(
           (e) => _cardImageItem(e, ShowPage.play),
         )
@@ -86,10 +98,7 @@ class _PlayCardPageState extends State<PlayCardPage> {
     );
   }
 
-  Widget _cardImageItem(
-    String txt,
-    ShowPage forPage,
-  ) {
+  Widget _cardImageItem(String txt, ShowPage forPage) {
     return WidgetHelper.cardImage(txt, forPage);
   }
 }

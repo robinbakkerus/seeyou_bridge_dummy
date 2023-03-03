@@ -30,6 +30,7 @@ class CardSelectWidget extends StatefulWidget {
   State<CardSelectWidget> createState() => _CardSelectWidgetState();
 }
 
+///---------------------
 class _CardSelectWidgetState extends State<CardSelectWidget> {
   @override
   Widget build(BuildContext context) {
@@ -90,5 +91,42 @@ class _CardPlayWidgetState extends State<CardPlayWidget> {
 
     PlayData.instance.playCard(widget.type, widget.nr);
     AppEvents.fireCardEvent();
+  }
+}
+
+///------------- trump card -------------------------
+
+class TrumpCardWidget extends StatefulWidget {
+  // const TrumpCard({super.key});
+
+  final CardType cardType;
+  bool selected;
+
+  TrumpCardWidget(this.cardType, this.selected, {Key? key}) : super(key: key);
+
+  factory TrumpCardWidget.ofCard(BridgeCard card) {
+    return TrumpCardWidget(card.type, card.selected);
+  }
+
+  @override
+  State<TrumpCardWidget> createState() => _TrumpCardWidgetState();
+}
+
+///------------
+class _TrumpCardWidgetState extends State<TrumpCardWidget> {
+  void _onTrumpCardTap() async {
+    PlayData.instance.activeTrumpCard = widget.cardType;
+    setState(() {
+      widget.selected = true;
+    });
+
+    await Future.delayed(const Duration(seconds: 1));
+    AppEvents.fireCardEvent();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WidgetHelper.clickableTrumpCard(
+        widget.cardType, _onTrumpCardTap, widget.selected);
   }
 }

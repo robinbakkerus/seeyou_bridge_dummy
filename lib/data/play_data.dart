@@ -16,6 +16,7 @@ class PlayData {
   /// these two are needed to support undo
   List<BridgeCard> cardsSelected = [];
   List<BridgeCard> cardsPlayed = [];
+  CardType? activeTrumpCard;
 
   /// screen sizes, will be set
   double screenWidth = 400.0;
@@ -35,6 +36,7 @@ class PlayData {
     _language = value;
   }
 
+  ShowPage activePage = ShowPage.play;
   bool firstTime = true;
 
   /// bool to indicate if tabbar is visible

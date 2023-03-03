@@ -30,7 +30,14 @@ class _SelectCardsPageState extends State<SelectCardsPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: _listview(),
+      child: _buildStack(),
+    );
+  }
+
+  Widget _buildStack() {
+    return Stack(
+      alignment: Alignment.topLeft,
+      children: [_listview(), _selectTrumpCardRowWidget()],
     );
   }
 
@@ -90,6 +97,45 @@ class _SelectCardsPageState extends State<SelectCardsPage> {
     }
     return Row(
       children: items,
+    );
+  }
+
+  Widget _selectTrumpCardRowWidget() {
+    int cnt = PlayData.instance.cardsSelectedCount();
+    if (cnt < 13) {
+      return Container();
+    }
+
+    double screenWidth = PlayData.instance.screenWidth;
+    return Positioned(
+        left: screenWidth / 5.0,
+        bottom: 20,
+        child: Container(
+          width: screenWidth / 2.0,
+          height: screenWidth / 6.0,
+          color: Colors.blue,
+          child: Column(
+            children: [
+              const Text(
+                'Selecteer troef kaart',
+                style: TextStyle(fontSize: 40),
+              ),
+              _buildTrumCardWidgetRow(),
+            ],
+          ),
+        ));
+  }
+
+  Widget _buildTrumCardWidgetRow() {
+    List<Widget> buttons = [];
+    for (var ct in CardType.values) {
+      Widget btn = TrumpCardWidget(ct, false);
+      buttons.add(btn);
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: buttons,
     );
   }
 }

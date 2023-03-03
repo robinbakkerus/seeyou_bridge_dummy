@@ -10,11 +10,36 @@ class CardDataHelper {
     // first collect all cards played sorted in separate lists
     List<List<BridgeCard>> cardsPlayed = [];
 
-    for (var cardType in CardType.values) {
-      _fillCards(cardType, cardsPlayed);
+    for (var cardType in sortedCardTypes()) {
+      _fillCards(cardType, cardsPlayed); // cardsPlayed is filled
     }
 
     return _buildResultList(cardsPlayed);
+  }
+
+  /// build a List<String> of the cards to be shown on the top row, with the trump card on the left
+  static List<String> buildTopRowCardImages() {
+    List<CardType> sortedTypes = sortedCardTypes();
+    return sortedTypes.map((e) => e.name).toList();
+  }
+
+  static List<CardType> sortedCardTypes() {
+    List<CardType> result = [];
+
+    if (PlayData.instance.activeTrumpCard != null) {
+      CardType cardType = PlayData.instance.activeTrumpCard!;
+      result.add(cardType);
+
+      for (var e in CardType.values) {
+        if (!result.contains(e)) {
+          result.add(e);
+        }
+      }
+
+      return result;
+    } else {
+      return CardType.values;
+    }
   }
 
   /// ---- private methods --------------
