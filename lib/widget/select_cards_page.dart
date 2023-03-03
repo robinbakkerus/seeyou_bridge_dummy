@@ -107,11 +107,12 @@ class _SelectCardsPageState extends State<SelectCardsPage> {
       return Container();
     }
 
+    double screenWidth = PlayData.instance.screenWidth;
+
     return Center(
         child: Container(
-      width: 200,
-      height: 300,
-      // color: Colors.blue,
+      width: screenWidth / 2.5,
+      height: screenWidth / 2.0,
       decoration: BoxDecoration(
           border: Border.all(
               color: Colors.black, width: 5.0, style: BorderStyle.solid),
