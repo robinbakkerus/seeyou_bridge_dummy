@@ -102,8 +102,8 @@ class WidgetHelper {
 
   static Container _cardImageContainer(String imageName, ShowPage forPage) {
     return Container(
-        height: _getCardHeight(forPage),
-        width: _getCardWidth(forPage),
+        height: 50, //_getCardHeight(forPage),
+        width: 50, // _getCardWidth(forPage),
         margin: const EdgeInsets.all(1.0),
         padding: const EdgeInsets.all(1.0),
         decoration:

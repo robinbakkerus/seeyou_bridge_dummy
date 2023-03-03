@@ -106,32 +106,34 @@ class _SelectCardsPageState extends State<SelectCardsPage> {
       return Container();
     }
 
-    double screenWidth = PlayData.instance.screenWidth;
-    return Positioned(
-        left: screenWidth / 5.0,
-        bottom: 20,
+    return Center(
         child: Container(
-          width: screenWidth / 2.0,
-          height: screenWidth / 6.0,
-          color: Colors.blue,
-          child: Column(
-            children: [
-              const Text(
-                'Selecteer troef kaart',
-                style: TextStyle(fontSize: 40),
-              ),
-              _buildTrumCardWidgetRow(),
-            ],
+      width: 200,
+      height: 300,
+      // color: Colors.blue,
+      decoration: BoxDecoration(
+          border: Border.all(
+              color: Colors.black, width: 5.0, style: BorderStyle.solid),
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.blueAccent),
+      child: Column(
+        children: [
+          const Text('Selecteer', style: TextStyle(fontSize: 35)),
+          const Text('Troef kaart', style: TextStyle(fontSize: 35)),
+          Container(
+            height: 10,
           ),
-        ));
+          _buildTrumpCardWidgetRow(CardType.harten, CardType.schoppen),
+          _buildTrumpCardWidgetRow(CardType.ruiten, CardType.klaveren),
+        ],
+      ),
+    ));
   }
 
-  Widget _buildTrumCardWidgetRow() {
+  Widget _buildTrumpCardWidgetRow(CardType leftCard, CardType rightCard) {
     List<Widget> buttons = [];
-    for (var ct in CardType.values) {
-      Widget btn = TrumpCardWidget(ct, false);
-      buttons.add(btn);
-    }
+    buttons.add(TrumpCardWidget(leftCard, false));
+    buttons.add(TrumpCardWidget(rightCard, false));
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
