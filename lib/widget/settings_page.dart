@@ -1,7 +1,7 @@
+import 'package:seeyou_bridge_dummy/data/app_text.dart';
 import 'package:seeyou_bridge_dummy/data/play_data.dart';
 import 'package:seeyou_bridge_dummy/helper/settings_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BridgeSettings extends StatefulWidget {
   const BridgeSettings({super.key});
@@ -34,7 +34,7 @@ class _BridgeSettingsState extends State<BridgeSettings> {
   }
 
   Widget _selectHeight() {
-    String q = _translations().showCard;
+    String q = AppText.instance.getText(Tk.size);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,14 +50,8 @@ class _BridgeSettingsState extends State<BridgeSettings> {
     );
   }
 
-  AppLocalizations _translations() {
-    AppLocalizations loc =
-        lookupAppLocalizations(Locale(PlayData.instance.language));
-    return loc;
-  }
-
   Widget _flags() {
-    String q = _translations().language;
+    String q = AppText.instance.getText(Tk.lang);
 
     return Row(
       children: [
@@ -147,7 +141,7 @@ class _BridgeSettingsState extends State<BridgeSettings> {
           BridgeSettingsHelper.clearAllSetting();
         });
       },
-      child: const Text('Reset to default values'),
+      child: Text(AppText.instance.getText(Tk.reset)),
     );
   }
 }

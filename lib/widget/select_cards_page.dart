@@ -1,3 +1,4 @@
+import 'package:seeyou_bridge_dummy/data/app_text.dart';
 import 'package:seeyou_bridge_dummy/data/play_data.dart';
 import 'package:seeyou_bridge_dummy/model/card.dart';
 import 'package:seeyou_bridge_dummy/widget/card_widget.dart';
@@ -118,8 +119,10 @@ class _SelectCardsPageState extends State<SelectCardsPage> {
           color: Colors.blueAccent),
       child: Column(
         children: [
-          const Text('Selecteer', style: TextStyle(fontSize: 35)),
-          const Text('Troef kaart', style: TextStyle(fontSize: 35)),
+          Text(AppText.instance.getText(Tk.select),
+              style: const TextStyle(fontSize: 35)),
+          Text(AppText.instance.getText(Tk.trump),
+              style: const TextStyle(fontSize: 35)),
           Container(
             height: 10,
           ),

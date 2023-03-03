@@ -1,3 +1,4 @@
+import 'package:seeyou_bridge_dummy/data/app_text.dart';
 import 'package:seeyou_bridge_dummy/widget/play_card_page.dart';
 import 'package:seeyou_bridge_dummy/widget/select_cards_page.dart';
 import 'package:seeyou_bridge_dummy/widget/settings_page.dart';
@@ -117,13 +118,15 @@ class _MyHomePageState extends State<MyHomePage> {
     Color color;
     void Function() func;
 
+    String doneText = AppText.instance.getText(Tk.done);
+
     if (_isPlayPage()) {
       color = Colors.brown;
-      txt = _cardsSelectedCount == 0 ? 'Klaar' : '$_cardsSelectedCount';
+      txt = _cardsSelectedCount == 0 ? doneText : '$_cardsSelectedCount';
       func = _onUndoLastCardPlayed;
     } else {
       color = Colors.blue;
-      txt = _cardsSelectedCount < 13 ? '$_cardsSelectedCount' : 'Klaar';
+      txt = _cardsSelectedCount < 13 ? '$_cardsSelectedCount' : doneText;
       func = _onUndoLastCardSelected;
     }
 
