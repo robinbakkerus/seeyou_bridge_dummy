@@ -39,15 +39,16 @@ class WidgetHelper {
             )
           : null,
       child: Center(
-          child: Text(
-        txt,
-        style: TextStyle(
-            height: 0.9,
-            fontSize: fontsize,
-            // fontWeight: FontWeight.bold,
-            fontFamily: 'ArialNarrow',
-            color: Colors.black),
-      )),
+        child: Text(
+          txt,
+          style: TextStyle(
+              height: 0.9,
+              fontSize: fontsize,
+              // fontWeight: FontWeight.bold,
+              fontFamily: 'ArialNarrow',
+              color: Colors.black),
+        ),
+      ),
     );
   }
 
@@ -102,8 +103,8 @@ class WidgetHelper {
 
   static Container _cardImageContainer(String imageName, ShowPage forPage) {
     return Container(
-        height: 50, //_getCardHeight(forPage),
-        width: 50, // _getCardWidth(forPage),
+        height: _getCardHeight(forPage),
+        width: _getCardWidth(forPage),
         margin: const EdgeInsets.all(1.0),
         padding: const EdgeInsets.all(1.0),
         decoration:

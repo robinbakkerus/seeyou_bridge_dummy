@@ -120,7 +120,7 @@ class _TrumpCardWidgetState extends State<TrumpCardWidget> {
       widget.selected = true;
     });
 
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 500));
     AppEvents.fireCardEvent();
   }
 

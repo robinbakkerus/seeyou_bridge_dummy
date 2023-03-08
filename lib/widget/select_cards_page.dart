@@ -66,7 +66,7 @@ class _SelectCardsPageState extends State<SelectCardsPage> {
   }
 
   Widget _rightCol(CardType type) {
-    return Expanded(
+    return SingleChildScrollView(
       child: Column(
         children: [_rightColRow1(type), _rightColRow2(type)],
       ),
@@ -107,12 +107,18 @@ class _SelectCardsPageState extends State<SelectCardsPage> {
       return Container();
     }
 
+    double screenHeight = PlayData.instance.screenHeight;
     double screenWidth = PlayData.instance.screenWidth;
+
+    double w =
+        PlayData.instance.isLandscape() ? screenWidth / 5 : screenWidth / 2.5;
+    double h =
+        PlayData.instance.isLandscape() ? screenHeight / 2 : screenHeight / 2.5;
 
     return Center(
         child: Container(
-      width: screenWidth / 2.5,
-      height: screenWidth / 2.0,
+      width: w,
+      height: h,
       decoration: BoxDecoration(
           border: Border.all(
               color: Colors.black, width: 5.0, style: BorderStyle.solid),
@@ -120,14 +126,20 @@ class _SelectCardsPageState extends State<SelectCardsPage> {
           color: Colors.blueAccent),
       child: Column(
         children: [
-          Text(AppText.instance.getText(Tk.select),
-              style: const TextStyle(fontSize: 35)),
-          Text(AppText.instance.getText(Tk.trump),
-              style: const TextStyle(fontSize: 35)),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(AppText.instance.getText(Tk.select),
+                style: const TextStyle(fontSize: 35)),
+          ),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(AppText.instance.getText(Tk.trump),
+                style: const TextStyle(fontSize: 35)),
+          ),
           Container(
             height: 10,
           ),
-          _buildTrumpCardWidgetRow(CardType.harten, CardType.schoppen),
+          _buildTrumpCardWidgetRow(CardType.schoppen, CardType.harten),
           _buildTrumpCardWidgetRow(CardType.ruiten, CardType.klaveren),
         ],
       ),

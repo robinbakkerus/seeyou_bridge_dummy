@@ -58,6 +58,11 @@ class PlayData {
     cardsPlayed = [];
   }
 
+  ///---------
+  bool isLandscape() {
+    return screenWidth > screenHeight;
+  }
+
   ///---------------------------
   void selectCard(CardType cardType, int nr) {
     BridgeCard card = cards.firstWhere((c) => c.nr == nr && c.type == cardType);
