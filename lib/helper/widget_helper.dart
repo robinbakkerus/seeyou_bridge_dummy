@@ -107,8 +107,10 @@ class WidgetHelper {
         width: _getCardWidth(forPage),
         margin: const EdgeInsets.all(1.0),
         padding: const EdgeInsets.all(1.0),
-        decoration:
-            BoxDecoration(border: Border.all(color: Colors.brown, width: 2)),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.brown, width: 2),
+          color: Colors.grey[300],
+        ),
         child: Image(image: AssetImage(imageName)));
   }
 
@@ -135,6 +137,7 @@ class WidgetHelper {
         margin: const EdgeInsets.all(1.0),
         padding: const EdgeInsets.all(1.0),
         decoration: BoxDecoration(
+          color: Colors.grey[300],
           border: Border.all(color: Colors.brown),
         ),
         child: Image(image: AssetImage(imageName)));

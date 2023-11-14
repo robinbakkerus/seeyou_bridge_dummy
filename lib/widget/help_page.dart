@@ -5,10 +5,10 @@ class BridgeHelpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
         child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(children: const <Widget>[Text('under construction ...')]),
+      padding: EdgeInsets.all(8.0),
+      child: Column(children: <Widget>[Text('under construction ...')]),
     ));
   }
 }
