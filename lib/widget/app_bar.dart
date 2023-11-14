@@ -1,6 +1,7 @@
 import 'package:seeyou_bridge_dummy/data/play_data.dart';
 import 'package:seeyou_bridge_dummy/event/app_events.dart';
 import 'package:flutter/material.dart';
+import 'package:seeyou_bridge_dummy/widget/about.dart';
 
 class BridgeAppBar {
   static AppBar buildAppBar(BuildContext context) {
@@ -62,11 +63,10 @@ class BridgeAppBar {
 
               applicationName: 'See you Bridge dummy',
               applicationVersion: 'version: 2.1',
-              applicationLegalese: 'robin.bakkerus@gmail.com',
               children: <Widget>[
                 const Padding(
-                    padding: EdgeInsets.only(top: 15),
-                    child: Text('Under construction'))
+                    padding: EdgeInsets.fromLTRB(25, 10, 50, 2),
+                    child: BridgeAbout())
               ],
             );
           },

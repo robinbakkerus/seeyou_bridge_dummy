@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final Widget _showPage = const PlayCardPage();
   final Widget _playPage = const SelectCardsPage();
   final Widget _settingsPage = const BridgeSettings();
-  final Widget _helpPage = const BridgeHelpPage();
+  final Widget _helpPage = BridgeHelpPage();
 
   int _stackIndex = 0;
   int _cardsSelectedCount = 0;
