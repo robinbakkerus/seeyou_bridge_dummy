@@ -1,4 +1,4 @@
-package com.example.seeyou_bridge_dummy
+package nl.zonnebloemsoftware.seeyoubridgedummy
 
 import io.flutter.embedding.android.FlutterActivity
 

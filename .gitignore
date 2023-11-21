@@ -1,5 +1,8 @@
 ### Flutter Generated
 
+key.properties
+app/upload-keystore.jks
+
 # Miscellaneous
 *.class
 *.lock
